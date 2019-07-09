@@ -1,0 +1,2 @@
+# Sound_event_detection
+This code aims at semi-supervised and weakly-supervised sound event detection. The dataset utilized in our experiments is from DCASE (IEEE AASP Challenge on Detection and Classification of Acoustic Scenes and Events), more specifically, from DCASE2018 task4 and DCASE2019 task4. The code embraces two methods we proposed to solve this task: disentangled feature (DF) for weakly-supervised learning and guided learning (DF) for semi-supervised learning. We're so glad if you're interested in using it for research purpose or DCASE participation.
