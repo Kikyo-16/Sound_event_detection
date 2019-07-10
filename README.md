@@ -36,9 +36,11 @@ Scripts in "Scripts" directory help quick start.
 You can try to run  
 #### sh scripts/cATP-2018.sh  
 to train model with cATP-SDS-DF1 on the dataset of DCASE2018 task4;  
+
 Run
 #### sh scripts/semi-2018.sh  
 to train model with GL on the dataset of DCASE2018 task4;  
+
 Run
 #### sh scripts/semi-2019.sh  
 to train model on the dataset of DCASE2019 task4.  
