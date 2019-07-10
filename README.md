@@ -31,7 +31,7 @@ There are mainly 2 contribution in our work:
 ### Quick start
 Scripts in "Scripts" directory help quick start.  
 
-(Before running scripts, make sure for the [data preparation](#Data preparation))  
+(Before running scripts, make sure for the [data preparation](#data preparation) )  
 
 You can try to run  
 #### sh scripts/cATP-2018.sh  
