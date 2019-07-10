@@ -26,15 +26,15 @@ There are mainly 2 contribution in our work:
 ## How to use
 ### Quick start
 Scripts in "Scripts" directory help quick start.  
-(Before running scripts, make sure for the [data preparation](###Data preparation))  
+(Before running scripts, make sure for the [data preparation]{#index})  
 
 You can try to run  
 #### sh scripts/cATP-2018.sh  
 to train model with cATP-SDS-DF1 on the dataset of DCASE2018 task4;  
-run  
+Run
 #### sh scripts/semi-2018.sh  
 to train model with GL on the dataset of DCASE2018 task4;  
-run  
+Run
 #### sh scripts/semi-2019.sh  
 to train model on the dataset of DCASE2019 task4.  
 
@@ -42,12 +42,12 @@ to train model on the dataset of DCASE2019 task4.
 You can find details in example configure ctories (DCASE2018-task4, DCASE2018-task4_semi, DCASE2019-task4).  
 
 ## Details of the code implement
-### Data preparation
+### Data preparation{#index}
   `scripts` provides some example scripts to help data preparation:  
-    - `gen_feature-2018.sh` help extract feature for the dataset of DCASE2018 tas4
-    - `gen_feature-2019.sh` help extract feature for the dataset of DCASE2019 tas4
-    - `gen_label-2018.sh` help format labels of the dataset of DCASE2018 tas4
-    - `gen_label-2019.sh` help format labels of the dataset of DCASE2019 tas4
+    - `gen_feature-2018.sh` help extract feature for the dataset of DCASE2018 tas4  
+    - `gen_feature-2019.sh` help extract feature for the dataset of DCASE2019 tas4  
+    - `gen_label-2018.sh` help format labels of the dataset of DCASE2018 tas4  
+    - `gen_label-2019.sh` help format labels of the dataset of DCASE2019 tas4  
   Before running any example script to extract feature, make sure there are a audio directory to storedoriginal audio files and a feature directory to store output feature. The example script requires `data/wav` as the audio directory and `data/feature` as the feature directory.  
   You can down load audio files from the website of DCASE and store all the audio files in the audio directory before running the scripts.  
   If you experience any trouble downloading the audio files, you can contact the organizers of DCASE task4. Or send me an E-mail, I'll be glad to help you.  
