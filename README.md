@@ -1,4 +1,4 @@
-# (Note: 3 papers related to this coder will be updated a few days later)
+# (Note: 3 papers related to this code will be updated a few days later)
 # Sound event detection
 ## Introduction
   This code aims at semi-supervised and weakly-supervised sound event detection. The dataset utilized in our experiments is from DCASE (IEEE AASP Challenge on Detection and Classification of Acoustic Scenes and Events), more specifically, from [DCASE2018 task4](http://dcase.community/challenge2018/task-large-scale-weakly-labeled-semi-supervised-sound-event-detection) and [DCASE2019 task4](http://dcase.community/challenge2019/task-sound-event-detection-in-domestic-environments). The code embraces two methods we proposed to solve this task: [specialized decision surface (SDS) and disentangled feature (DF)](https://arxiv.org/abs/1905.10091) for weakly-supervised learning and [guided learning (GL)](https://arxiv.org/abs/1906.02517) for semi-supervised learning.  
