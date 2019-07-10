@@ -6,6 +6,10 @@ The dataset utilized in our experiments is from [DCASE2018 task4](http://dcase.c
 Actually, we exploited it to participate in DCASE2019 task4 and won the first price ([our technique report](http://dcase.community/documents/challenge2019/technical_reports/DCASE2019_Lin_25.pdf) and [challenge results](http://dcase.community/challenge2019/task-sound-event-detection-in-domestic-environments-results)). After adding analysis of result and making some modifications, we submitted the new technical report (to be updated soon) to [DCASE2019 Workshop](http://dcase.community/workshop2019/). 
 ## Main ideas comprised in the code
 ### Specialized decision surface (SDS) and disentangled feature (DF)
+We propose Specialized decision surface (SDS) and disentangled feature (DF) in paper [Specialized Decision Surface and DisentangledFeature for Weakly-Supervised Polyphonic Sound Event Detection](https://arxiv.org/abs/1905.10091).
+There are mainly 2 contribution in our work:
+  * The Multiple instance learning (MIL) framework with pooling module and the neural network is commonly utilized for the weakly-supervised learning task, base on which we compare the performances of different pooling modules including GMP (global max pooling), GAP (global average pooling), GSP (global softmax pooling) and cATP (class-wise attention pooling), and give an explanation about why cATP perform best from the perspective of the high-level feature space of the neural network encoder. This explanation enables us to focus on a potential decision surface which we term the specialized decision surface (SDS). SDS shows its power in frame-level prediction (event detection). Actually, similar to SDS, something like "attention output" or "attention mask" might have been exploited in other works. However, the detailed explanation remains explored. Therefore, we explore a detailed explanation 
+For weakly-supervised learning on Sound Event Detection
 
 ### Guided learning (GL)
 
