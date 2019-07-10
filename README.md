@@ -17,10 +17,10 @@ There are mainly 2 contribution in our work:
 
 
 ### Guided learning (GL)
-  The propose a semi-supervised learning method named guided learning (GL) fitting for weakly-supervised learning in paper [What you need is a more professional teacher](https://arxiv.org/abs/1906.02517).
+  We propose a semi-supervised learning method named guided learning (GL) fitting for weakly-supervised learning in paper [What you need is a more professional teacher](https://arxiv.org/abs/1906.02517).
 
   Here are 2 model architectures utilized in our experiments:
-  ![image](https://github.com/Kikyo-16/Sound_event_detection/image/fig1.png)
+  ![image](https://github.com/Kikyo-16/Sound_event_detection/blob/master/image/fig1.png)
 
 ## How to use
 ### Quick start
