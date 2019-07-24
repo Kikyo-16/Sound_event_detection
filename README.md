@@ -27,6 +27,10 @@ There are mainly 2 contribution in our work:
   ![image](https://github.com/Kikyo-16/Sound_event_detection/blob/master/image/fig1.png)
 
 ## How to use
+### Environment
+Keras 2.2.0 (using TensorFlow backend)  
+TensorFlow 1.8.0  
+
 ### Quick start
 Scripts in "Scripts" directory help quick start.  
 
