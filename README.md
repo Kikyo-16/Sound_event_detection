@@ -13,8 +13,9 @@
 ### Specialized decision surface (SDS) and disentangled feature (DF)
 We propose specialized decision surface (SDS) and disentangled feature (DF) in paper [Specialized Decision Surface and Disentangled Feature for Weakly-Supervised Polyphonic Sound Event Detection](https://arxiv.org/abs/1905.10091).  
 
-There are mainly 2 contribution in our work:  
-  - The Multiple instance learning (MIL) framework with pooling module and the neural network is commonly utilized for the weakly-supervised learning task, base on which we compare the performances of different MIL approach including the instance-level and embedding-level approach, present a method to generate frame-level probabilities for the embedding-level approach and propose a specialized decision surface for the embedding-level attention pooling. 
+There are mainly 3 contribution in our work:  
+  - The Multiple instance learning (MIL) framework with pooling module and the neural network is commonly utilized for the weakly-supervised learning task, base on which we compare the performances of different MIL approach including the instance-level and embedding-level approach and propose a method to generate frame-level probabilities for the embedding-level approach.  
+  - We propose a specialized decision surface for the embedding-level attention pooling. 
   - Disentangled feature (DF) is proposed to ease the problem caused by the co-occurrence of categories. We describe it in detail in the paper.  
   
   The model architecture utilized in our experiments is the same as the PS-model discussed in the next section.  
