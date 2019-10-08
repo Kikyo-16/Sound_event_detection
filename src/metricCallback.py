@@ -194,11 +194,11 @@ class metricCallback(keras.callbacks.Callback):
 			#the predictions (possibilities) of the PS-model
 			y_pred_2 = y_pred[:, CLASS:]
 
-			#the 0-1 predictions of the PT-model
+			#the 0-1 predictions of the PS-model
 			y_pred_2_X = K.relu(K.relu(y_pred_2, threshold = 0.5) * 2, 
 					max_value = 1)
 
-			#the 0-1 predictions of the PS-model
+			#the 0-1 predictions of the PT-model
 			y_pred_1_X = K.relu(K.relu(y_pred_1, threshold = 0.5) * 2, 
 					max_value = 1)
 
