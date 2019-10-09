@@ -76,5 +76,14 @@ Tools to help extract feature and generate labels.
 #### src
 Source codes. See details in the source codes.  
 
+### Reproduce DCASE2019 Task4 challenge results
+run  
+#### sh scripts/reproduce_Lin_ICT_task4_1.sh  
+#### sh scripts/reproduce_Lin_ICT_task4_2.sh  
+#### sh scripts/reproduce_Lin_ICT_task4_3.sh  (the first place)
+#### sh scripts/reproduce_Lin_ICT_task4_4.sh
+
+See details in `challenge_results`.
+
 ## Contact us
 Please don't hesitate to contact us should you have any question. You can email me at `linliwei17g@ict.ac.cn` or `1174436431@qq.com`.
