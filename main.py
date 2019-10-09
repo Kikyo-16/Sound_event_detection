@@ -1,3 +1,4 @@
+import copy
 import os
 import numpy as np
 import random
@@ -117,7 +118,7 @@ def semi_train(task_name,sed_model_name,at_model_name,augmentation):
 	train_sed.save_sed_result()	#event detection result
 
 
-def test(task_name,model_name):
+def test(task_name, model_name, model_path = None, at_preds={}, sed_preds={}):
 	""""
 	Test with prepared model dir.
 	The format of the model dir must be consistent with the required format.
@@ -126,15 +127,28 @@ def test(task_name,model_name):
 			the name of the task
 		model_name: string
 			the name of the model
+		model_path: string
+			the path of model weights (if None, set defaults)
+		at_preds: dict
+		sed_preds: dict
+
 	Return:
+		at_preds: dict
+			{'vali': numpy.array, 'test': numpy.array}
+			audio tagging prediction (possibilities) on both set
+		sed_preds: dict
+			{'vali': numpy.array, 'test': numpy.array}
+			detection prediction (possibilities) on both set
 	
         """
 	#prepare for testing
-	train=trainer.trainer(task_name,model_name,True)
-
+	train = trainer.trainer(task_name,model_name,True)
+	if not model_path == None:
+		train.best_model_path = model_path
 	#predict results for validation set and test set
-	train.save_at_result()	#audio tagging result
-	train.save_sed_result()	#event detection result
+	at_preds_out = train.save_at_result(at_preds)	#audio tagging result
+	sed_preds_out = train.save_sed_result(sed_preds)	#event detection result
+	return at_preds_out, sed_preds_out
 
 def bool_convert(value):
 	""""
@@ -155,6 +169,69 @@ def bool_convert(value):
 		assert False
 	return rvalue
 
+
+def test_models(task_name, model_name, model_list_path):
+	""""
+	Test with prepared model dir.
+	The format of the model dir and model weights must be consistent with the required format.
+	Args:
+		task_name: string
+			the name of the task
+		model_name: string
+			the name of the model
+		model_list_path: string
+			the path of file which keeps a list of paths of model weights
+	Return:
+
+	"""
+
+	def predict(A):
+		A[A >= 0.5 ] = 1
+		A[A < 0.5] = 0
+		return A
+
+	if model_list_path == None:
+		test(task_name,sed_model_name)
+	else:
+		with open(model_list_path) as f:
+			model_list = f.readlines()
+		model_list = [m.rstrip() for m in model_list]
+
+		if len(model_list) == 1:
+			LOG.info( 'ensemble results (just a single model)')
+			test(task_name, sed_model_name, model_list[0])
+			return
+		at_results={}
+		sed_results={}
+		mode = ['vali', 'test']
+		for model_path in model_list:
+			LOG.info( 'decode for model : {}'.format(model_path))
+			at_preds, sed_preds = test(task_name, sed_model_name, model_path)
+			for m in mode:
+				if m not in at_results:
+					at_results[m] = predict(at_preds[m])
+					sed_results[m] = sed_preds[m]
+				else:
+					at_results[m] += predict(at_preds[m])
+					sed_results[m] += sed_preds[m]
+			
+
+		for m in mode:
+			at = copy.deepcopy(at_results[m])
+
+			#vote for boundary detection
+			mask = np.reshape(at, [at.shape[0],1,at.shape[1]])
+			mask[mask == 0] = 1
+			sed_results[m] /= mask	
+
+			#vote for audio tagging
+			at_results[m] = at / len(model_list)
+			sed_results[m] = [at_results[m], sed_results[m]]
+
+		LOG.info( 'ensemble results')	
+		test(task_name, sed_model_name, None, at_results, sed_results)
+					
+
 if __name__=='__main__':
 	LOG.info('Disentangled feature')
 	parser = argparse.ArgumentParser(description='')
@@ -172,17 +249,24 @@ if __name__=='__main__':
 		help='select [true or false] : whether to use augmentation (add Gaussian noise)')
 	parser.add_argument('-u', '--semi_supervised', dest='semi_supervised',
 		help='select [true or false] : whether to use unlabel data')
+	parser.add_argument('-e', '--ensemble', dest='ensemble',
+		help='select [true or false] : whether to ensembel several models when testing')
+	parser.add_argument('-w', '--model_weights_list', dest='model_weights_list',
+		help='the path of file containing a list of path of model weights to ensemble')
 	f_args = parser.parse_args()
 
-	task_name=f_args.task_name
-	sed_model_name=f_args.PS_model_name
-	at_model_name=f_args.PT_model_name
-	mode=f_args.mode
-	semi_supervised=f_args.semi_supervised
-	augmentation=f_args.augmentation
+	task_name = f_args.task_name
+	sed_model_name = f_args.PS_model_name
+	at_model_name = f_args.PT_model_name
+	mode = f_args.mode
+	semi_supervised = f_args.semi_supervised
+	augmentation = f_args.augmentation
+	ensemble = f_args.ensemble
+	model_weights_list = f_args.model_weights_list
 
-	augmentation=bool_convert(augmentation)
-	semi_supervised=bool_convert(semi_supervised)
+	if mode not in ['train','test']:
+		LOG.info('Invalid mode')
+		assert LOG.info('try add --help to get usage')
 
 	if task_name is None:
 		LOG.info('task_name is required')
@@ -192,14 +276,20 @@ if __name__=='__main__':
 		LOG.info('PS_model_name is required')		
 		assert LOG.info('try add --help to get usage')
 
-	if semi_supervised and at_model_name is None:
-		LOG.info('PT_model_name is required for semi-supervised learning')
-		assert LOG.info('try add --help to get usage')
+	if mode == 'train':
+		augmentation = bool_convert(augmentation)
+		semi_supervised = bool_convert(semi_supervised)
+		if semi_supervised and at_model_name is None:
+			LOG.info('PT_model_name is required for semi-supervised learning')
+			assert LOG.info('try add --help to get usage')
 	
-	if mode not in ['train','test']:
-		LOG.info('Invalid mode')
-		assert LOG.info('try add --help to get usage')
-
+			assert LOG.info('try add --help to get usage')
+	else:
+		semi_supervised = False
+		ensemble = bool_convert(ensemble)
+		if not ensemble:
+			model_weights_list = None
+		
 
 	LOG.info( 'task name: {}'.format(task_name))
 	LOG.info( 'PS-model name: {}'.format(sed_model_name))
@@ -210,11 +300,10 @@ if __name__=='__main__':
 	
 	if mode=='train':
 		if semi_supervised:
-			semi_train(task_name,sed_model_name,at_model_name,
-				augmentation)
+			semi_train(task_name, sed_model_name, at_model_name, augmentation)
 		else:
-			supervised_train(task_name,sed_model_name,augmentation)		
+			supervised_train(task_name, sed_model_name, augmentation)		
 	else:
-		test(task_name,sed_model_name)
+		test_models(task_name, sed_model_name, model_weights_list)
 		
 
