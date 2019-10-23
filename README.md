@@ -22,7 +22,7 @@ There are mainly 3 contribution in our work:
 
 
 ### Guided learning (GL)
-  We propose a semi-supervised learning method named Guided Learning (GL) fitting for weakly-supervised learning in paper [Guided Learning for the combination of weakly-supervised and semi-supervised learning](https://arxiv.org/abs/1906.02517).  
+  We propose a semi-supervised learning method named Guided Learning (GL) fitting for weakly-supervised learning in paper [Guided learning for weakly-labeled semi-supervised sound event detection](https://arxiv.org/abs/1906.02517).  
 
   Here are 2 model architectures utilized in our experiments:  
   ![image](https://github.com/Kikyo-16/Sound_event_detection/blob/master/image/fig1.png)
