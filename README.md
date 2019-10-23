@@ -7,7 +7,7 @@
 ## Something about DCASE
   The dataset utilized in our experiments is from [DCASE2018 task4](http://dcase.community/challenge2018/task-large-scale-weakly-labeled-semi-supervised-sound-event-detection) and [DCASE2019 task4](http://dcase.community/challenge2019/task-sound-event-detection-in-domestic-environments). We've encapsulated some interfaces to handle dataset of DCASE task4 and streams to read the data, so this code can be used directly for the future challenge (or as a basis for fine-tuning).  
   
-  Actually, we exploited it to participate in DCASE2019 task4 and won the first price ([our technique report](http://dcase.community/documents/challenge2019/technical_reports/DCASE2019_Lin_25.pdf) and [challenge results](http://dcase.community/challenge2019/task-sound-event-detection-in-domestic-environments-results)). After adding analysis of result and making some modifications, we submitted the new technical report (to be updated soon) to [DCASE2019 Workshop](http://dcase.community/workshop2019/).  
+  Actually, we exploited it to participate in DCASE2019 task4 and achieve the best performance on the evaluation set among all the submissions to the challenge ([challenge results](http://dcase.community/challenge2019/task-sound-event-detection-in-domestic-environments-results))). A challenge-related paper ([Guided Learning Convolution System for DCASE 2019 Task 4] (https://arxiv.org/abs/1909.06178)) is accepeted by [DCASE2019 Workshop] (http://dcase.community/workshop2019/) oral presentation.  
 
 ## Main ideas comprised in the code
 ### Specialized decision surface (SDS) and disentangled feature (DF)
@@ -22,7 +22,7 @@ There are mainly 3 contribution in our work:
 
 
 ### Guided learning (GL)
-  We propose a semi-supervised learning method named Guided Learning (GL) fitting for weakly-supervised learning in paper [Guided learning for weakly-labeled semi-supervised sound event detection](https://arxiv.org/abs/1906.02517).  
+  We propose a method named Guided Learning (GL) forweakly-labeled semi-supervised SED in paper [Guided learning for weakly-labeled semi-supervised sound event detection](https://arxiv.org/abs/1906.02517).  
 
   Here are 2 model architectures utilized in our experiments:  
   ![image](https://github.com/Kikyo-16/Sound_event_detection/blob/master/image/fig1.png)
