@@ -86,4 +86,4 @@ run
 See details in `challenge_results`.
 
 ## Contact us
-Please don't hesitate to contact us should you have any question. You can email me at `linliwei17g@ict.ac.cn` or `1174436431@qq.com`.
+Please don't hesitate to contact us should you have any question. You can email me at `linliwei17g@ict.ac.cn` or `linliwei-kikyo-16@foxmail.com`.
